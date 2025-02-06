@@ -67,3 +67,16 @@ void Chat::sendPrivateMessage() {
 	recipient->addPrivateMessage(currentUser->getLogin(), message);
 	std::cout << "Сообщение отправлено пользователю " << recipientLogin << std::endl;
 }
+
+void Chat::sendMessageToChat() {
+	if (!currentUser) {
+		std::cout << "Сначала войдите в систему!";
+		return;
+	}
+
+	std::string message;
+	std::cout << "Напишите сообщение в чат: ";
+	std::cin >> message;
+	_chat.push_back(currentUser->getLogin() + ": " + message);
+	std::cout << "Сообщение отправлено!" << std::endl;
+}
