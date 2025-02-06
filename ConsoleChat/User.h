@@ -10,5 +10,5 @@ private:
 	std::string _password;
 public:
 	User() = default; 
-	User(std::string& name, std::string& login, std::string& password); //Конструктор класса
+	User(std::string& name, std::string& login, std::string& password); //РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РєР»Р°СЃСЃР°
 };
