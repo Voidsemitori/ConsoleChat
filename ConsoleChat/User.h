@@ -27,4 +27,5 @@ public:
 	void setLogin(std::string login);
 	void setPassword(std::string password);
 	//_______________________________
+	~User() = default;
 };
