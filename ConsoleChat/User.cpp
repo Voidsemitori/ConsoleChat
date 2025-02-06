@@ -5,18 +5,18 @@ User::User(std::string& name, std::string& login, std::string& password) :
 
 }
 
-void User::addPrivateMessage(std::string sender, std::string message) { 
+void User::addPrivateMessage(std::string sender, std::string message) {
 	_privateMessages.emplace_back(sender, message);
 }
 
-void User::viewPrivateMessage() const{
+void User::viewPrivateMessage() const {
 	if (_privateMessages.empty()) {
-		std::cout << "ĞĞµÑ‚ Ğ»Ğ¸Ñ‡Ğ½Ñ‹Ñ… ÑĞ¾Ğ¾Ğ±Ñ‰ĞµĞ½Ğ¸Ğ¹." << std::endl;
+		std::cout << "Íåò ëè÷íûõ ñîîáùåíèé." << std::endl;
 	}
 	else {
-		std::cout << "------Ğ›Ğ¸Ñ‡Ğ½Ñ‹Ğµ ÑĞ¾Ğ¾Ğ±Ñ‰ĞµĞ½Ğ¸Ñ------" << std::endl;
-		for (auto& message : _privateMessages) {  //Ğ¦Ğ¸ĞºĞ» Ğ´Ğ»Ñ Ğ²Ñ‹Ğ²Ğ¾Ğ´Ğ° Ğ»Ğ¸Ñ‡Ğ½Ñ‹Ñ… ÑĞ¾Ğ¾Ğ±Ñ‰ĞµĞ½Ğ¸Ğ¹
-			std::cout << "ĞÑ‚ " << message.first << ": " << message.second << std::endl;
+		std::cout << "------Ëè÷íûå ñîîáùåíèÿ------" << std::endl;
+		for (auto& message : _privateMessages) {  //Öèêë äëÿ âûâîäà ëè÷íûõ ñîîáùåíèé
+			std::cout << "Îò " << message.first << ": " << message.second << std::endl;
 		}
 	}
 }

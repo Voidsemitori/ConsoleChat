@@ -6,23 +6,23 @@
 
 class User {
 private:
-	std::string _name; // РїРµСЂРµРјРµРЅРЅР°СЏ С…СЂР°РЅРёС‚ РёРјСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЃСЏ
-	std::string _login; //РїРµСЂРµРјРµРЅРЅР°СЏ С…СЂР°РЅРёС‚ Р»РѕРіРёРЅ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
-	std::string _password; //РїРµСЂРµРјРµРЅРЅР°СЏ С…СЂР°РЅРёС‚ РїР°СЂРѕР»СЊ РїРѕР»СЊР·РѕРІР°РµС‚РµР»СЏ
-	std::vector <std::pair<std::string, std::string>> _privateMessages; //РЎС‚СЂСѓРєС‚СѓСЂР° pair РґР»СЏ РѕР±СЉРµРґРёРЅРµРЅРёСЏ РєРѕРЅС‚РµР№РЅРµСЂРѕРІ, СЃРѕРґРµСЂР¶Р°С‰РёС… СЃРѕРѕР±С‰РµРЅРёРµ Рё Р»РѕРіРёРЅ РѕС‚РїСЂР°РІРёС‚РµР»СЏ СЃРѕРѕР±С‰РµРЅРёСЏ
+	std::string _name; // переменная хранит имя пользователся
+	std::string _login; //переменная хранит логин пользователя
+	std::string _password; //переменная хранит пароль пользоваетеля
+	std::vector <std::pair<std::string, std::string>> _privateMessages; //Структура pair для объединения контейнеров, содержащих сообщение и логин отправителя сообщения
 public:
-	User() = default; 
-	User(std::string& name, std::string& login, std::string& password); //РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РєР»Р°СЃСЃР°
-	void addPrivateMessage(std::string sender, std::string message); //Р¤СѓРЅРєС†РёСЏ РґР»СЏ СЃРѕС…СЂР°РЅРµРЅРёСЏ РїСЂРёС€РµРґС€РµРіРѕ РїРѕР»СЊР·РѕРІР°С‚РµР»СЋ СЃРѕРѕР±С‰РµРЅРёСЏ Рё Р»РѕРіРёРЅР° РµРіРѕ РѕС‚РїСЂР°РІРёС‚РµР»СЏ
-	void viewPrivateMessage() const; //Р¤СѓРЅРєС†РёСЏ РґР»СЏ РїСЂРѕСЃРјРѕС‚СЂР° Р»РёС‡РЅС‹С… СЃРѕРѕР±С‰РµРЅРёР№
+	User() = default;
+	User(std::string& name, std::string& login, std::string& password); //Конструктор класса
+	void addPrivateMessage(std::string sender, std::string message); //Функция для сохранения пришедшего пользователю сообщения и логина его отправителя
+	void viewPrivateMessage() const; //Функция для просмотра личных сообщений
 
-	//Р“РµС‚С‚РµСЂС‹:
+	//Геттеры:
 	std::string getName() const;
 	std::string getLogin() const;
 	std::string getPassword() const;
 	//______________________________
 
-	//РЎРµС‚С‚РµСЂС‹:
+	//Сеттеры:
 	void setName(std::string name);
 	void setLogin(std::string login);
 	void setPassword(std::string password);

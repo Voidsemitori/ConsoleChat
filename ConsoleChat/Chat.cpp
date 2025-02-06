@@ -12,78 +12,78 @@ User* Chat::findByLogin(std::string& login) {
 void Chat::registerUser() {
 	std::string name, login, password;
 
-	std::cout << "Р’РІРµРґРёС‚Рµ РІР°С€Рµ РёРјСЏ: ";
+	std::cout << "Введите ваше имя: ";
 	std::cin >> name;
-	std::cout << "Р’РІРµРґРёС‚Рµ Р»РѕРіРёРЅ: ";
+	std::cout << "Введите логин: ";
 	std::cin >> login;
 
 	if (findByLogin(login)) {
-		std::cout << "РџРѕР»СЊР·РѕРІР°С‚РµР»СЊ СЃ С‚Р°РєРёРј Р»РѕРіРёРЅРѕРј СѓР¶Рµ СЃСѓС‰РµСЃС‚РІСѓРµС‚!" << std::endl;
+		std::cout << "Пользователь с таким логином уже существует!" << std::endl;
 		return;
 	}
 
-	std::cout << "Р’РІРµРґРёС‚Рµ РїР°СЂРѕР»СЊ: ";
+	std::cout << "Введите пароль: ";
 	std::cin >> password;
 
 	_users.emplace_back(name, login, password);
-	std::cout << "Р РєРіРёСЃС‚СЂР°С†РёСЏ СѓСЃРїРµС€РЅРѕ Р·Р°РІРµСЂС€РµРЅР°!" << std::endl;
+	std::cout << "Ркгистрация успешно завершена!" << std::endl;
 }
 
 void Chat::login() {
 	std::string login, password;
 
-	std::cout << "Р’РІРµРґРёС‚Рµ Р»РѕРіРёРЅ: ";
+	std::cout << "Введите логин: ";
 	std::cin >> login;
-	std::cout << "Р’РІРµРґРёС‚Рµ РїР°СЂРѕР»СЊ: ";
+	std::cout << "Введите пароль: ";
 	std::cin >> password;
 
 	User* user = findByLogin(login);
 	if (user && (user->getPassword() == password)) {
 		currentUser = user;
-		std::cout << "Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ, " << currentUser->getLogin() << std::endl;
+		std::cout << "Добро пожаловать, " << currentUser->getLogin() << std::endl;
 	}
 	else {
-		std::cout << "Р’С‹ РІРІРµР»Рё РЅРµРІРµСЂРЅС‹Р№ Р»РѕРіРёРЅ РёР»Рё РїР°СЂРѕР»СЊ!" << std::endl;
+		std::cout << "Вы ввели неверный логин или пароль!" << std::endl;
 	}
 }
 
 void Chat::sendPrivateMessage() {
 	if (!currentUser) {
-		std::cout << "РЎРЅР°С‡Р°Р»Р° РІРѕР№РґРёС‚Рµ РІ СЃРёСЃС‚РµРјСѓ!";
+		std::cout << "Сначала войдите в систему!";
 		return;
 	}
 
 	std::string recipientLogin, message;
-	std::cout << "Р’РІРµРґРёС‚Рµ Р»РѕРіРёРЅ РїРѕР»СѓС‡Р°С‚РµР»СЏ: ";
+	std::cout << "Введите логин получателя: ";
 	std::cin >> recipientLogin;
 	User* recipient = findByLogin(recipientLogin);
 	if (!recipient) {
-		std::cout << "РџРѕР»СЊР·РѕРІР°С‚РµР»СЊ РЅРµ РЅР°Р№РґРµРЅ!" << std::endl; //
+		std::cout << "Пользователь не найден!" << std::endl; //
 		return;
 	}
-	std::cout << "\nР’РІРµРґРёС‚Рµ СЃРѕРѕР±С‰РµРЅРёРµ: ";
+	std::cout << "\nВведите сообщение: ";
 	std::cin >> message;
 
 	recipient->addPrivateMessage(currentUser->getLogin(), message);
-	std::cout << "РЎРѕРѕР±С‰РµРЅРёРµ РѕС‚РїСЂР°РІР»РµРЅРѕ РїРѕР»СЊР·РѕРІР°С‚РµР»СЋ " << recipientLogin << std::endl;
+	std::cout << "Сообщение отправлено пользователю " << recipientLogin << std::endl;
 }
 
 void Chat::sendMessageToChat() {
 	if (!currentUser) {
-		std::cout << "РЎРЅР°С‡Р°Р»Р° РІРѕР№РґРёС‚Рµ РІ СЃРёСЃС‚РµРјСѓ!";
+		std::cout << "Сначала войдите в систему!";
 		return;
 	}
 
 	std::string message;
-	std::cout << "РќР°РїРёС€РёС‚Рµ СЃРѕРѕР±С‰РµРЅРёРµ РІ С‡Р°С‚: ";
+	std::cout << "Напишите сообщение в чат: ";
 	std::cin >> message;
 	_chat.push_back(currentUser->getLogin() + ": " + message);
-	std::cout << "РЎРѕРѕР±С‰РµРЅРёРµ РѕС‚РїСЂР°РІР»РµРЅРѕ!" << std::endl;
+	std::cout << "Сообщение отправлено!" << std::endl;
 }
 
 void Chat::viewPrivateMessages() {
 	if (!currentUser) {
-		std::cout << "РЎРЅР°С‡Р°Р»Р° РІРѕР№РґРёС‚Рµ РІ СЃРёСЃС‚РµРјСѓ!";
+		std::cout << "Сначала войдите в систему!";
 		return;
 	}
 
@@ -92,14 +92,14 @@ void Chat::viewPrivateMessages() {
 
 void Chat::viewChat() {
 	if (!currentUser) {
-		std::cout << "РЎРЅР°С‡Р°Р»Р° РІРѕР№РґРёС‚Рµ РІ СЃРёСЃС‚РµРјСѓ!";
+		std::cout << "Сначала войдите в систему!";
 		return;
 	}
 	else if (_chat.empty()) {
-		std::cout << "Р’ С‡Р°С‚Рµ РїРѕРєР° РЅРµС‚ СЃРѕРѕР±С‰РµРЅРёР№." << std::endl;
+		std::cout << "В чате пока нет сообщений." << std::endl;
 	}
 	else {
-		std::cout << "--------Р§Р°С‚--------" << std::endl;
+		std::cout << "--------Чат--------" << std::endl;
 		for (auto& message : _chat) {
 			std::cout << message << std::endl;
 		}
@@ -108,10 +108,56 @@ void Chat::viewChat() {
 
 void Chat::logout() {
 	if (currentUser) {
-		std::cout << "Р’С‹ РІС‹С€Р»Рё РёР· СЃРёСЃС‚РµРјС‹, " << currentUser->getLogin() << std::endl;
+		std::cout << "Вы вышли из системы, " << currentUser->getLogin() << std::endl;
 		currentUser = nullptr;
 	}
 	else {
-		std::cout << "Р’С‹ РЅРµ Р°РІС‚РѕСЂРёР·РѕРІР°РЅС‹." << std::endl;
+		std::cout << "Вы не авторизованы." << std::endl;
 	}
+}
+
+void Chat::run() {
+	int choice;
+	do {
+		std::cout << "\n-------Menu-------" << std::endl;;
+		std::cout << "1. Регистрация" << std::endl;
+		std::cout << "2. Вход в систему" << std::endl;
+		std::cout << "3. Отправить сообщение пользователю" << std::endl;
+		std::cout << "4. Отправить сообщение всем пользователям" << std::endl;
+		std::cout << "5. Посмотреть все сообщения" << std::endl;
+		std::cout << "6. Посмотреть личные сообщения" << std::endl;
+		std::cout << "7. Выйти из системы" << std::endl;
+		std::cout << "0. Выход" << std::endl;
+		std::cout << "Введите число необходимой операции: ";
+		std::cin >> choice;
+
+		switch (choice) {
+		case 1:
+			registerUser();
+			break;
+		case 2:
+			login();
+			break;
+		case 3:
+			sendPrivateMessage();
+			break;
+		case 4:
+			sendMessageToChat();
+			break;
+		case 5:
+			viewChat();
+			break;
+		case 6:
+			viewPrivateMessages();
+			break;
+		case 7:
+			logout();
+			break;
+		case 0:
+			std::cout << "Выход из программы.\n";
+			break;
+		default:
+			std::cout << "Некорректный выбор. Попробуйте снова.\n";
+		}
+	} while (choice != 0);
 }
