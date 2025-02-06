@@ -80,3 +80,28 @@ void Chat::sendMessageToChat() {
 	_chat.push_back(currentUser->getLogin() + ": " + message);
 	std::cout << "Сообщение отправлено!" << std::endl;
 }
+
+void Chat::viewPrivateMessages() {
+	if (!currentUser) {
+		std::cout << "Сначала войдите в систему!";
+		return;
+	}
+
+	currentUser->viewPrivateMessage();
+}
+
+void Chat::viewChat() {
+	if (!currentUser) {
+		std::cout << "Сначала войдите в систему!";
+		return;
+	}
+	else if (_chat.empty()) {
+		std::cout << "В чате пока нет сообщений." << std::endl;
+	}
+	else {
+		std::cout << "--------Чат--------" << std::endl;
+		for (auto& message : _chat) {
+			std::cout << message << std::endl;
+		}
+	}
+}
