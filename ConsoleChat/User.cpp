@@ -5,7 +5,7 @@ User::User(std::string& name, std::string& login, std::string& password) :
 
 }
 
-void User::addPrivateMessage(std::string sender, std::string message) { //Функция для сохранения пришедшего пользователю сообщения и логина его отправителя
+void User::addPrivateMessage(std::string sender, std::string message) { 
 	_privateMessages.emplace_back(sender, message);
 }
 
@@ -21,10 +21,26 @@ void User::viewPrivateMessage() const{
 	}
 }
 
+std::string User::getName() const {
+	return _name;
+}
+
 std::string User::getLogin() const {
 	return _login;
 }
 
 std::string User::getPassword() const {
 	return _password;
+}
+
+void User::setName(std::string name) {
+	_name = name;
+}
+
+void User::setLogin(std::string login) {
+	_login = login;
+}
+
+void User::setPassword(std::string password) {
+	_password = password;
 }

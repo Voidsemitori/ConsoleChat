@@ -14,11 +14,11 @@ private:
 
 public:
 	Chat() = default;
-	void registerUser();
-	void login();
-	void sendPrivateMessage();
-	void sendMessageToChat();
-	void viewPrivateMessages();
-	void viewChat();
-	void logout();
+	void registerUser(); //Фунцкция для регистрация нового пользователя
+	void login(); //Функция для входа в аккаунт пользователя
+	void sendPrivateMessage(); //Функция для отправки сообщения пользователю
+	void sendMessageToChat(); //Функция для отправки сообщений в чат
+	void viewPrivateMessages(); //Функция для просмотра личных сообщений
+	void viewChat(); // Функция для просмотра чата
+	void logout(); //функция для выхода из аккаунта
 };
