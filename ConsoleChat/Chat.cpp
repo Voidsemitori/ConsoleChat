@@ -105,3 +105,13 @@ void Chat::viewChat() {
 		}
 	}
 }
+
+void Chat::logout() {
+	if (currentUser) {
+		std::cout << "Вы вышли из системы, " << currentUser->getLogin() << std::endl;
+		currentUser = nullptr;
+	}
+	else {
+		std::cout << "Вы не авторизованы." << std::endl;
+	}
+}
