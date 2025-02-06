@@ -3,5 +3,6 @@
 using namespace std;
 
 int main() {
-	cout << "Test" << endl;
+	setlocale(LC_ALL, "RU");
+	cout << "Тест" << endl;
 }
