@@ -61,8 +61,9 @@ void Chat::sendPrivateMessage() {
 		std::cout << "Пользователь не найден!" << std::endl; //
 		return;
 	}
+	std::cin.ignore();
 	std::cout << "\nВведите сообщение: ";
-	std::cin >> message;
+	std::getline(std::cin, message);
 
 	recipient->addPrivateMessage(currentUser->getLogin(), message);
 	std::cout << "Сообщение отправлено пользователю " << recipientLogin << std::endl;
@@ -75,8 +76,9 @@ void Chat::sendMessageToChat() {
 	}
 
 	std::string message;
+	std::cin.ignore();
 	std::cout << "Напишите сообщение в чат: ";
-	std::cin >> message;
+	std::getline(std::cin, message);
 	_chat.push_back(currentUser->getLogin() + ": " + message);
 	std::cout << "Сообщение отправлено!" << std::endl;
 }
@@ -123,8 +125,8 @@ void Chat::run() {
 		std::cout << "1. Регистрация" << std::endl;
 		std::cout << "2. Вход в систему" << std::endl;
 		std::cout << "3. Отправить сообщение пользователю" << std::endl;
-		std::cout << "4. Отправить сообщение всем пользователям" << std::endl;
-		std::cout << "5. Посмотреть все сообщения" << std::endl;
+		std::cout << "4. Отправить сообщение в чат" << std::endl;
+		std::cout << "5. Посмотреть чат" << std::endl;
 		std::cout << "6. Посмотреть личные сообщения" << std::endl;
 		std::cout << "7. Выйти из системы" << std::endl;
 		std::cout << "0. Выход" << std::endl;
