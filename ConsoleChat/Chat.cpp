@@ -119,7 +119,7 @@ void Chat::logout() {
 void Chat::run() {
 	int choice;
 	do {
-		std::cout << "\n-------Menu-------" << std::endl;;
+		std::cout << "\n-------Меню-------" << std::endl;;
 		std::cout << "1. Регистрация" << std::endl;
 		std::cout << "2. Вход в систему" << std::endl;
 		std::cout << "3. Отправить сообщение пользователю" << std::endl;
