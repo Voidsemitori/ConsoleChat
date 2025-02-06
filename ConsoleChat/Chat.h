@@ -1,5 +1,8 @@
 #pragma once
 
+#include <iostream>
+#include <string>
+#include <vector>
 #include "User.h"
 
 class Chat {
@@ -10,6 +13,7 @@ private:
 	User* findByLogin(std::string& login); //Функция поиска пользователя по логину
 
 public:
+	Chat() = default;
 	void registerUser();
 	void login();
 	void sendPrivateMessage();

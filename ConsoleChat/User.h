@@ -15,4 +15,6 @@ public:
 	User(std::string& name, std::string& login, std::string& password); //Конструктор класса
 	void addPrivateMessage(std::string &sender, std::string message);
 	void viewPrivateMessage() const;
+	std::string getLogin() const;
+	std::string getPassword() const;
 };

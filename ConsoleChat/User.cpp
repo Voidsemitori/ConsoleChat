@@ -20,3 +20,11 @@ void User::viewPrivateMessage() const{
 		}
 	}
 }
+
+std::string User::getLogin() const {
+	return _login;
+}
+
+std::string User::getPassword() const {
+	return _password;
+}
