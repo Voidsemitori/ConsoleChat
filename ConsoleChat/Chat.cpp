@@ -118,6 +118,27 @@ void Chat::logout() {
 	}
 }
 
+void Chat::changeLogin() {
+	if (!currentUser) {
+		std::cout << "Сначала войдите в систему!";
+		return;
+	}
+	else {
+		std::string login;
+		std::cout << "Введите новый логин: ";
+		std::cin >> login;
+		if (findByLogin(login)) {
+			std::cout << "Пользователь с таким логином уже существует!" << std::endl;
+			return;
+		}
+		else {
+			currentUser->setLogin(login);
+		}
+		std::cout << "Вы успешно сменили логин, " << login << std::endl;
+
+	}
+}
+
 void Chat::run() {
 	int choice;
 	do {
@@ -128,7 +149,8 @@ void Chat::run() {
 		std::cout << "4. Отправить сообщение в чат" << std::endl;
 		std::cout << "5. Посмотреть чат" << std::endl;
 		std::cout << "6. Посмотреть личные сообщения" << std::endl;
-		std::cout << "7. Выйти из системы" << std::endl;
+		std::cout << "7. Изменить логин" << std::endl;
+		std::cout << "8. Выйти из системы" << std::endl;
 		std::cout << "0. Выход" << std::endl;
 		std::cout << "Введите число необходимой операции: ";
 		std::cin >> choice;
@@ -153,6 +175,9 @@ void Chat::run() {
 			viewPrivateMessages();
 			break;
 		case 7:
+			changeLogin();
+			break;
+		case 8:
 			logout();
 			break;
 		case 0:

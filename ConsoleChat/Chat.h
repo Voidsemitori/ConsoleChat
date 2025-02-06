@@ -21,5 +21,6 @@ public:
 	void viewPrivateMessages(); //Функция для просмотра личных сообщений
 	void viewChat(); // Функция для просмотра чата
 	void logout(); //функция для выхода из аккаунта
+	void changeLogin();
 	void run(); //Функция для зацикливания программы и вывода меню
 };
