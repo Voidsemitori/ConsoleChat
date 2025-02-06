@@ -12,37 +12,58 @@ User* Chat::findByLogin(std::string& login) {
 void Chat::registerUser() {
 	std::string name, login, password;
 
-	std::cout << "Ââåäèòå âàøå èìÿ: ";
+	std::cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð²Ð°ÑˆÐµ Ð¸Ð¼Ñ: ";
 	std::cin >> name;
-	std::cout << "Ââåäèòå ëîãèí: ";
+	std::cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð»Ð¾Ð³Ð¸Ð½: ";
 	std::cin >> login;
 
 	if (findByLogin(login)) {
-		std::cout << "Ïîëüçîâàòåëü ñ òàêèì ëîãèíîì óæå ñóùåñòâóåò!" << std::endl;
+		std::cout << "ÐŸÐ¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÑŒ Ñ Ñ‚Ð°ÐºÐ¸Ð¼ Ð»Ð¾Ð³Ð¸Ð½Ð¾Ð¼ ÑƒÐ¶Ðµ ÑÑƒÑ‰ÐµÑÑ‚Ð²ÑƒÐµÑ‚!" << std::endl;
 		return;
 	}
 
-	std::cout << "Ââåäèòå ïàðîëü: ";
+	std::cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¿Ð°Ñ€Ð¾Ð»ÑŒ: ";
 	std::cin >> password;
 
 	_users.emplace_back(name, login, password);
-	std::cout << "Ðêãèñòðàöèÿ óñïåøíî çàâåðøåíà!" << std::endl;
+	std::cout << "Ð ÐºÐ³Ð¸ÑÑ‚Ñ€Ð°Ñ†Ð¸Ñ ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ Ð·Ð°Ð²ÐµÑ€ÑˆÐµÐ½Ð°!" << std::endl;
 }
 
 void Chat::login() {
 	std::string login, password;
 
-	std::cout << "Ââåäèòå ëîãèí: ";
+	std::cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð»Ð¾Ð³Ð¸Ð½: ";
 	std::cin >> login;
-	std::cout << "Ââåäèòå ïàðîëü: ";
+	std::cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¿Ð°Ñ€Ð¾Ð»ÑŒ: ";
 	std::cin >> password;
 
 	User* user = findByLogin(login);
 	if (user && (user->getPassword() == password)) {
 		currentUser = user;
-		std::cout << "Äîáðî ïîæàëîâàòü, " << currentUser->getLogin() << std::endl;
+		std::cout << "Ð”Ð¾Ð±Ñ€Ð¾ Ð¿Ð¾Ð¶Ð°Ð»Ð¾Ð²Ð°Ñ‚ÑŒ, " << currentUser->getLogin() << std::endl;
 	}
 	else {
-		std::cout << "Âû ââåëè íåâåðíûé ëîãèí èëè ïàðîëü!" << std::endl;
+		std::cout << "Ð’Ñ‹ Ð²Ð²ÐµÐ»Ð¸ Ð½ÐµÐ²ÐµÑ€Ð½Ñ‹Ð¹ Ð»Ð¾Ð³Ð¸Ð½ Ð¸Ð»Ð¸ Ð¿Ð°Ñ€Ð¾Ð»ÑŒ!" << std::endl;
 	}
+}
+
+void Chat::sendPrivateMessage() {
+	if (!currentUser) {
+		std::cout << "Ð¡Ð½Ð°Ñ‡Ð°Ð»Ð° Ð²Ð¾Ð¹Ð´Ð¸Ñ‚Ðµ Ð² ÑÐ¸ÑÑ‚ÐµÐ¼Ñƒ!";
+		return;
+	}
+
+	std::string recipientLogin, message;
+	std::cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð»Ð¾Ð³Ð¸Ð½ Ð¿Ð¾Ð»ÑƒÑ‡Ð°Ñ‚ÐµÐ»Ñ: ";
+	std::cin >> recipientLogin;
+	User* recipient = findByLogin(recipientLogin);
+	if (!recipient) {
+		std::cout << "ÐŸÐ¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÑŒ Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½!" << std::endl; //
+		return;
+	}
+	std::cout << "\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÑÐ¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ðµ: ";
+	std::cin >> message;
+
+	recipient->addPrivateMessage(currentUser->getLogin(), message);
+	std::cout << "Ð¡Ð¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ðµ Ð¾Ñ‚Ð¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¾ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÑŽ " << recipientLogin << std::endl;
 }
