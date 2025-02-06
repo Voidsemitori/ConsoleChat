@@ -5,18 +5,18 @@ User::User(std::string& name, std::string& login, std::string& password) :
 
 }
 
-void User::addPrivateMessage(std::string& sender, std::string message) { //Функция для сохранения пришедшего пользователю сообщения и логина его отправителя
+void User::addPrivateMessage(std::string& sender, std::string message) { //Р¤СѓРЅРєС†РёСЏ РґР»СЏ СЃРѕС…СЂР°РЅРµРЅРёСЏ РїСЂРёС€РµРґС€РµРіРѕ РїРѕР»СЊР·РѕРІР°С‚РµР»СЋ СЃРѕРѕР±С‰РµРЅРёСЏ Рё Р»РѕРіРёРЅР° РµРіРѕ РѕС‚РїСЂР°РІРёС‚РµР»СЏ
 	_privateMessages.emplace_back(sender, message);
 }
 
 void User::viewPrivateMessage() const{
 	if (_privateMessages.empty()) {
-		std::cout << "Нет личных сообщений." << std::endl;
+		std::cout << "РќРµС‚ Р»РёС‡РЅС‹С… СЃРѕРѕР±С‰РµРЅРёР№." << std::endl;
 	}
 	else {
-		std::cout << "------Личные сообщения------" << std::endl;
-		for (auto& message : _privateMessages) {  //Цикл для вывода личных сообщений
-			std::cout << "От " << message.first << ": " << message.second << std::endl;
+		std::cout << "------Р›РёС‡РЅС‹Рµ СЃРѕРѕР±С‰РµРЅРёСЏ------" << std::endl;
+		for (auto& message : _privateMessages) {  //Р¦РёРєР» РґР»СЏ РІС‹РІРѕРґР° Р»РёС‡РЅС‹С… СЃРѕРѕР±С‰РµРЅРёР№
+			std::cout << "РћС‚ " << message.first << ": " << message.second << std::endl;
 		}
 	}
 }
